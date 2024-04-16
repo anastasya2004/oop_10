@@ -10,10 +10,10 @@ class RomanNumber:
         """
         if self.is_roman(value):
             self.rom_value = value
-            self.int_value = None
+            self.int_value = self.decimal_number()
         elif self.is_int(value):
-            self.rom_value = None
             self.int_value = value
+            self.rom_value = self.roman_number()
         else:
             print('Ошибка')
             self.rom_value = None
