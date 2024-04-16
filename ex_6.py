@@ -10,10 +10,10 @@ class RomanNumber:
         """
         if self.is_roman(value):
             self.rom_value = value
-            self.int_value = None
+            self.int_value = self.decimal_number()
         elif self.is_int(value):
-            self.rom_value = None
             self.int_value = value
+            self.rom_value = self.roman_number()
         else:
             print('Ошибка')
             self.rom_value = None
@@ -24,10 +24,11 @@ class RomanNumber:
         Convert the Roman numeral to a decimal number.
         """
         dec = 0
+        rom = self.rom_value
         for i, r in RomanNumber.all_roman:
-            while self.rom_value.startswith(r):
+            while rom.startswith(r):
                 dec += i
-                self.rom_value = self.rom_value[len(r):]
+                rom = rom[len(r):]
         return dec
     
     def roman_number(self):
@@ -35,11 +36,12 @@ class RomanNumber:
         Convert the integer to a Roman numeral.
         """
         roman = ''
-        while self.int_value > 0:
+        num = self.int_value
+        while num > 0:
             for i, r in RomanNumber.all_roman:
-                while self.int_value >= i:
+                while num >= i:
                     roman += r
-                    self.int_value -= i
+                    num -= i
         return roman
 
     @staticmethod
